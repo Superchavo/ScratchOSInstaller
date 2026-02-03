@@ -8,9 +8,10 @@ echo        by Superchavo
 echo ================================
 echo.
 
+:: Windows 7 compatible admin check
 echo Checking for administrator rights...
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
-if errorlevel 1 (
+net session >nul 2>&1
+if %errorLevel% neq 0 (
     echo ERROR: Please run as Administrator!
     echo.
     echo Right-click this file and select:
@@ -32,33 +33,41 @@ goto ask
 :install
 echo.
 echo Creating user "Scratch Cat"...
+echo.
 
-net user "Scratch Cat" DaCat /add /fullname:"Scratch Cat" /comment:"Scratch User" >nul 2>&1
+:: WINDOWS 7 FIX: Create user in two steps
+net user "Scratch Cat" DaCat /add /fullname:"Scratch Cat" 2>nul
 if errorlevel 1 (
-    echo User may already exist. Setting password...
-) else (
-    echo User created successfully.
+    echo [!] User "Scratch Cat" may already exist.
+    goto setpassword
 )
 
-net user "Scratch Cat" DaCat >nul 2>&1
-echo Password set to: DaCat
+echo [OK] User created successfully.
 
-net localgroup administrators "Scratch Cat" /add >nul 2>&1
+:setpassword
+:: Set/change password separately
+net user "Scratch Cat" DaCat 2>nul
+echo [OK] Password set to: DaCat
+
+:: Add to administrators - Windows 7 compatible
+net localgroup administrators "Scratch Cat" /add 2>nul
 if errorlevel 1 (
-    echo Note: Could not add to admin group (may already be admin).
+    echo [!] Note: User may already be in admin group.
 ) else (
-    echo Added to Administrators group.
+    echo [OK] Added to Administrators group.
 )
 
 echo.
 echo Opening download pages...
+echo Please wait for browser to open...
 echo.
 
+:: Open downloads with delays
 start "" "https://www.mediafire.com/view/mkqeejm21fzx6bt/images.jpeg/file"
-ping -n 3 127.0.0.1 >nul
+ping -n 4 127.0.0.1 >nul
 
 start "" "https://www.mediafire.com/view/v2o6i0yovdxobat/NewProject8svg2.png/file"
-ping -n 3 127.0.0.1 >nul
+ping -n 4 127.0.0.1 >nul
 
 start "" "https://www.mediafire.com/file/lsawb6ksj0636h3/Cursorz.zip/file?dkey=mydw8l5jt4c&r=1835"
 
@@ -67,16 +76,13 @@ echo ================================
 echo      INSTALLATION COMPLETE
 echo ================================
 echo.
-echo User account ready:
-echo - Username: Scratch Cat
+echo Summary:
+echo - User: Scratch Cat
 echo - Password: DaCat
-echo - Type: Administrator
+echo - Account type: Administrator
 echo.
-echo Download instructions:
-echo 1. Download files from browser tabs
-echo 2. Save to: C:\Users\Scratch Cat\
-echo 3. Extract Cursorz.zip if needed
+echo Save downloads to:
+echo C:\Users\Scratch Cat\
 echo.
-echo Created by Superchavo
-echo.
-pause
+echo Press any key to exit...
+pause >nul
