@@ -69,7 +69,7 @@ ping -n 4 127.0.0.1 >nul
 start "" "https://github.com/Superchavo/ScratchOSInstaller/raw/refs/heads/main/Scratch%20Cursors%20with%20Zepto%20and%20Milli!.zip"
 ping -n 4 127.0.0.1 >nul
 
-start "" "https://www.mediafire.com/file/lsawb6ksj0636h3/Cursorz.zip/file?dkey=mydw8l5jt4c&r=1835"
+start "" "https://raw.githubusercontent.com/Superchavo/ScratchOSInstaller/refs/heads/main/1b7a24b85b87a779c9ea56a9d7155e16.jpg"
 
 echo.
 echo ================================
