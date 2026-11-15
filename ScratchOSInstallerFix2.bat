@@ -63,10 +63,10 @@ echo Please wait for browser to open...
 echo.
 
 :: Open downloads with delays
-start "" "https://www.mediafire.com/view/mkqeejm21fzx6bt/images.jpeg/file"
+start "" "https://raw.githubusercontent.com/Superchavo/ScratchOSInstaller/refs/heads/main/images%20(17).jpeg"
 ping -n 4 127.0.0.1 >nul
 
-start "" "https://www.mediafire.com/view/v2o6i0yovdxobat/NewProject8svg2.png/file"
+start "" "https://github.com/Superchavo/ScratchOSInstaller/raw/refs/heads/main/Scratch%20Cursors%20with%20Zepto%20and%20Milli!.zip"
 ping -n 4 127.0.0.1 >nul
 
 start "" "https://www.mediafire.com/file/lsawb6ksj0636h3/Cursorz.zip/file?dkey=mydw8l5jt4c&r=1835"
